@@ -4,10 +4,8 @@ public class IntegerList_Impl implements IntegerListInterface {
 
     Integer[] integerList = new Integer[16];
 
-    Integer[] extension(Integer[] arrayToExtend) {
-        Integer[] tempArray;
-        tempArray = Arrays.copyOf(integerList, arrayToExtend.length + arrayToExtend.length / 2);
-        return integerList = tempArray;
+    Integer[] extension() {
+        return integerList = Arrays.copyOf(integerList, integerList.length + integerList.length / 2);
     }
 
     Integer[] shiftLeft(int index) {
@@ -37,7 +35,7 @@ public class IntegerList_Impl implements IntegerListInterface {
             return integerList[0] = item;
         }
         if (integerList[integerList.length-1] != null) {
-            extension(integerList);
+            extension();
         }
         return integerList[(size())] = item;
     }
@@ -165,10 +163,11 @@ public class IntegerList_Impl implements IntegerListInterface {
         return newArray;
     }
 
-    private void sortingBySelection(Integer[] array) {
-        for (int i = 0; i < size(); i++) {
+    void sortingBySelection(Integer[] array) {
+        int size = size();
+        for (int i = 0; i < size; i++) {
             int minValueIndex = i;
-            for (int j = size() - 1; j > i; j--) {
+            for (int j = i + 1; j < size; j++) {
                 if (array[j] < array[minValueIndex]) {
                     minValueIndex = j;
                 }

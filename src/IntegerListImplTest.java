@@ -13,6 +13,7 @@ public class IntegerListImplTest {
     private final Integer[] EXTENDED_LIST = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,null,null,null,null,null,null,null,null};
     private final Integer[] FULL_LIST = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
     private final Integer[] EXTENDED_LIST_ADD = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,123,null,null,null,null,null,null,null};
+    private final Integer[] UNSORTED_LIST = {5,2,9,4,1,7,6,8,3,15,14,16,13,11,10,12};
     private final int TEST_INDEX = 4;
     private final int OUT_OF_SIZE_INDEX = 12;
     private final int OUT_OF_BOUND_INDEX = 16;
@@ -75,14 +76,19 @@ public class IntegerListImplTest {
     @Test
     public void shouldReturnExtendedList(){
         OUT.integerList = FULL_LIST;
-        Assertions.assertArrayEquals(OUT.extension(FULL_LIST), EXTENDED_LIST);
+        Assertions.assertArrayEquals(OUT.extension(), EXTENDED_LIST);
     }
     @Test
     public void shouldExtendTheListAndAddValueOf123(){
         OUT.integerList = FULL_LIST;
         OUT.add(123);
         Assertions.assertArrayEquals(EXTENDED_LIST_ADD, OUT.integerList);
-
+    }
+    @Test
+    public void shouldReturnSortedArray(){
+        OUT.integerList = UNSORTED_LIST;
+        OUT.sortingBySelection(OUT.integerList);
+        Assertions.assertArrayEquals(FULL_LIST,OUT.integerList);
     }
 }
 
